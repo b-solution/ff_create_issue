@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Projects</title>
+        <meta name="<%= Redmine::Plugin.registered_plugins[:ff_create_issue].name %>" content="<%= Redmine::Plugin.registered_plugins[:ff_create_issue].version %>" >
+        <%= javascript_include_tag 'jquery', :plugin => 'ff_create_issue' %>
+        <%= javascript_include_tag 'project', :plugin => 'ff_create_issue' %>
+        <%= stylesheet_link_tag  'main', :plugin => 'ff_create_issue' %>
+    </head>
+    <body>
+        <div class="project_wrap">
+              <input placeholder="Search project..." class="search_input" id="search" type="text" />
+              <div class="clear_search">
+                  <span class="part1"></span>
+                  <span class="part2"></span>
+              </div>
+              <div class="project_list_wrapper">
+                  <ul class="projects_ul" id="projects">
+                      <% project_tree(@projects) do |project, level| %>
+                          <li class="level_<%= level %>" data-id="<%= project.id %>"><%= project.name %></li>
+                      <% end %>
+                  </ul>
+              </div>
+        </div>
+        <script type="text/javascript" charset="utf-8">
+            $('#projects').on('click', function(e){
+                if($(e.target).hasClass('fade')){
+                    return false;
+                }
+                var project_id = $(e.target).attr('data-id');
+                document.location.href = 'ff_new_issue?project_id='+project_id;
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Create Issue</title>
+      <meta name="<%= Redmine::Plugin.registered_plugins[:ff_create_issue].name %>" content="<%= Redmine::Plugin.registered_plugins[:ff_create_issue].version %>" >
+        <%= javascript_include_tag 'main', :plugin => 'ff_create_issue' %>
+
+        <%= stylesheet_link_tag  'main', :plugin => 'ff_create_issue' %>
+    </head>
+    <body>
+        <div class="all_wrap">
+            <div class="created_wrapper clearfix">
+                <div class="created_task_title">The issue #<%= @issue.id %> added successfully</div>
+                <div class="btn_wrap">
+                  <% if @issue.assigned_to == @user %>
+                    <a id="start_btn" class="created_button run" href="#">Run created task</a>
+                  <% end %>
+                    <a class="created_button create" href="/ff_projects">Create issue</a>
+                    <a id="close_btn" class="created_button close" href="#">Close</a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

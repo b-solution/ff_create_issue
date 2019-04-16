@@ -1,0 +1,29 @@
+= Add Issue Plugin
+Plugin for creation new tasks in RMClient[http://rmclient.org]
+
+Download latest plugin — http://rmclient.forforce.com/add_issue_plugin/
+
+== How it works
+
+In order to activate «Create New Issue» feature in RMClient, you need to install Add Issue Plugin.
+
+After plugin installation Issues creation in RMClient automatically becomes accessible.
+
+This plugin only works with RMClient[http://rmclient.org].
+
+== How to install plugin in Redmine
+
+Make sure that your server meets the following requirements:
+* Redmine: 2.5, 2.6, 2.7
+* Ruby: 1.9.3, 2.0
+* Rails: 3.2.13, 3.2.19
+* Database: PostgreSQL, MySQL, MSSQL
+
+Copy the folder with the plugin to the plugins folder of «Redmine» — «plugins».
+
+A user who runs web server must have access to the root directory of the «Redmine» installation.
+
+If you're using Unix operating system, run the following commands:
+ sudo chmod 775 -R your_redmine_root_folder
+ sudo chown -R your_web_server_group:your_web_server_user your_redmine_folder
+ Restart your server

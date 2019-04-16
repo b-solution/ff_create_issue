@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Create Issue</title>
+  <meta name="<%= Redmine::Plugin.registered_plugins[:ff_create_issue].name %>" content="<%= Redmine::Plugin.registered_plugins[:ff_create_issue].version %>" >
+<%= javascript_include_tag 'jquery', :plugin => 'ff_create_issue' %>
+<%= javascript_include_tag 'app', :plugin => 'ff_create_issue' %>
+<%= javascript_include_tag 'attachments', :plugin => 'ff_create_issue' %>
+<%= javascript_include_tag 'jstoolbar/jstoolbar', :plugin => 'ff_create_issue' %>
+<%= javascript_include_tag 'jstoolbar/lang/jstoolbar-en', :plugin => 'ff_create_issue' %>
+<%= javascript_include_tag 'main', :plugin => 'ff_create_issue' %>
+<%= javascript_include_tag 'jquery.formstyler.min.js', :plugin => 'ff_create_issue' %>
+<%= javascript_include_tag 'jquery.mousewheel.js', :plugin => 'ff_create_issue' %>
+<%= javascript_include_tag 'jquery.mCustomScrollbar.min.js', :plugin => 'ff_create_issue' %>
+<%= javascript_include_tag 'jquery.scrollbar.min.js', :plugin => 'ff_create_issue' %>
+<%= stylesheet_link_tag  'main', :plugin => 'ff_create_issue' %>
+</head>
+<body>
+<script type="text/javascript">
+    //<![CDATA[
+    var datepickerOptions={dateFormat: 'yy-mm-dd', firstDay: 1, showOn: 'button', buttonImageOnly: true, buttonImage: '/images/calendar.png', showButtonPanel: true, showWeek: true, showOtherMonths: true, selectOtherMonths: true, changeMonth: true, changeYear: true, beforeShow: beforeShowDatePicker};
+    //]]>
+</script>
+<div class="window_scroll_container">
+
+<div class="window_wrap">
+<h1 class="main_title">New task for <%= @project.name %><a href="/ff_projects" class="back_link">Back to projects</a></h1>
+  <div class="flash notice" id="flash_notice"></div>
+  <div class="error_message_wrap" id="error_message"></div>
+<%= labelled_form_for @issue, :url => '/ff_create_issue', :authenticity_token => false,
+                      :html => {:id => 'issue-form', :multipart => true} do |f| %>
+    <%= error_messages_for 'issue' %>
+    <%= hidden_field_tag 'copy_from', params[:copy_from] if params[:copy_from] %>
+    <div class="box tabular">
+      <div id="all_attributes">
+        <%= render :partial => 'form', :locals => {:f => f} %>
+      </div>
+
+      <% if @copy_from && Setting.link_copied_issue == 'ask' %>
+          <p>
+            <label for="link_copy"><%= l(:label_link_copied_issue) %></label>
+            <%= check_box_tag 'link_copy', '1', @link_copy %>
+          </p>
+      <% end %>
+      <% if @copy_from && @copy_from.attachments.any? %>
+          <p>
+            <label for="copy_attachments"><%= l(:label_copy_attachments) %></label>
+            <%= check_box_tag 'copy_attachments', '1', @copy_attachments %>
+          </p>
+      <% end %>
+      <% if @copy_from && !@copy_from.leaf? %>
+          <p>
+            <label for="copy_subtasks"><%= l(:label_copy_subtasks) %></label>
+            <%= check_box_tag 'copy_subtasks', '1', @copy_subtasks %>
+          </p>
+      <% end %>
+
+      <div class="separator"></div>
+
+      <% if @issue.safe_attribute? 'watcher_user_ids', @user -%>
+                <div id="watchers_form"><label class="watchers_label"><%= l(:label_issue_watchers) %></label>
+                    <div id="watchers_inputs">
+                      <ul class="two_column_list clearfix" id="watchers_list">
+                        <%= watchers_checkboxes(@issue, users_for_new_issue_watchers(@issue)) %>
+                      </ul>
+                    </div>
+
+                </div>
+      <% end %>
+
+      <%= render :partial => 'new_watcher', :locals => {:watched => @watched, :users => @users} %>
+
+      <div class="separator"></div>
+
+      <p id="attachments_form" class="clearfix"><label style="display: block; margin-bottom: 15px"><%= l(:label_attachment_plural) %></label><%= render :partial => 'attachment_form', :locals => {:container => @issue} %></p>
+
+      <%= hidden_field_tag 'project_id', params[:project_id] %>
+      <div id="dima_test"></div>
+    </div>
+
+    <div class="separator"></div>
+    <div class="buttons_wrapper">
+        <%#= submit_tag l(:button_create_and_continue), :name => 'continue', :class=>'submit_buttons' %>
+        <%= submit_tag l(:button_create), :class=>'submit_buttons' %>
+        <%= submit_tag 'Back', :class=>'submit_buttons', :id=>'back_to_projects', :href=>"/ff_projects" %>
+    </div>
+    <%#= preview_link preview_new_issue_path(:project_id => @issue.project), 'issue-form' %>
+<% end %>
+
+</div>
+</div>
+<div id="preview" class="wiki"></div>
+<div id="ajax-modal" style="display:none;"></div>
+</body>
+</html>

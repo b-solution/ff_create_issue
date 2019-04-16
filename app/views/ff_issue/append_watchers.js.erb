@@ -1,0 +1,5 @@
+<% @users.each do |user| %>
+  $("#issue_watcher_user_ids_<%= user.id %>").parent().remove();
+<% end %>
+$('#watchers_list').append('<%= escape_javascript(watchers_checkboxes(nil, @users, true)) %>');
+$('input[type=checkbox]').styler();

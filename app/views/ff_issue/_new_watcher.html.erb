@@ -1,0 +1,28 @@
+ <label class="search_watchers_label expand">Search watchers</label>
+ <div class="watchers_search_wrapper" style="display: none;">
+  <%= label_tag 'user_search', l(:label_user_search) %><%= text_field_tag 'user_search', nil %>
+  <%= javascript_tag "observeSearchfield('user_search', 'users_for_watcher',
+                '/ff_watchers_autocomplete?object_type=#{(watched && watched.class.name.underscore)}&object_id=#{watched}&project_id=#{@project.id}')"%>
+
+  <div class="add_watchers_list" id="users_for_watcher">
+    <%= principals_check_box_tags('watcher[user_ids][]', users) %>
+  </div>
+
+  <div class="buttons clearfix">
+    <div class="add_watch_btn" id="add_watcher">Add watcher</div>
+  </div>
+
+<script type="text/javascript" charset="utf-8">
+$('#add_watcher').on('click', function(e){
+    var user_ids = [],
+        data = {};
+    $('#users_for_watcher input').each(function(){
+       if(this.checked){
+           user_ids.push($(this).val());
+       }
+    });
+    data.watcher = {user_ids: user_ids};
+    $.post('ff_append_watchers', data);
+});
+</script>
+</div>

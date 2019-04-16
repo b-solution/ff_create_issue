@@ -1,0 +1,63 @@
+
+@font-face {
+    font-family: 'Decima Nova Bold';
+    src: url('/plugin_assets/ff_create_issue/stylesheets/font/decima_nova_pro_bold-webfont.svg#decima_nova_probold') format('svg');
+    src: url('/plugin_assets/ff_create_issue/stylesheets/font/decima_nova_pro_bold-webfont.eot');
+    src: url('/plugin_assets/ff_create_issue/stylesheets/font/decima_nova_pro_bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/plugin_assets/ff_create_issue/stylesheets/font/decima_nova_pro_bold-webfont.woff') format('woff'),
+	     url('/plugin_assets/ff_create_issue/stylesheets/font/decima_nova_pro_bold-webfont.ttf') format('truetype');
+	font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Decima Nova Light';
+    src: url('/plugin_assets/ff_create_issue/stylesheets/font/decima_nova_pro_light-webfont.svg#decima_nova_pro_ltregular') format('svg');
+    src: url('/plugin_assets/ff_create_issue/stylesheets/font/decima_nova_pro_light-webfont.eot');
+    src: url('/plugin_assets/ff_create_issue/stylesheets/font/decima_nova_pro_light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/plugin_assets/ff_create_issue/stylesheets/font/decima_nova_pro_light-webfont.woff') format('woff'),
+         url('/plugin_assets/ff_create_issue/stylesheets/font/decima_nova_pro_light-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Decima Nova';
+    src: url('/plugin_assets/ff_create_issue/stylesheets/font/decima_nova_pro-webfont.svg#decima_nova_proregular') format('svg');
+    src: url('/plugin_assets/ff_create_issue/stylesheets/font/decima_nova_pro-webfont.eot');
+    src: url('/plugin_assets/ff_create_issue/stylesheets/font/decima_nova_pro-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/plugin_assets/ff_create_issue/stylesheets/font/decima_nova_pro-webfont.woff') format('woff'),
+         url('/plugin_assets/ff_create_issue/stylesheets/font/decima_nova_pro-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+	font-family: 'icomoon';
+    src:url('/plugin_assets/ff_create_issue/stylesheets/font/icomoon.svg#icomoon') format('svg');
+    src:url('/plugin_assets/ff_create_issue/stylesheets/font/icomoon.eot');
+	src:url('/plugin_assets/ff_create_issue/stylesheets/font/icomoon.eot?#iefix') format('embedded-opentype'),
+	    url('/plugin_assets/ff_create_issue/stylesheets/font/icomoon.woff') format('woff'),
+	    url('/plugin_assets/ff_create_issue/stylesheets/font/icomoon.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+.icon-earth, .icon-phone, .icon-mail, .icon-download {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+.icon-earth:before {
+	content: "\e000";
+}
+.icon-phone:before {
+	content: "\e006";
+}
+.icon-mail:before {
+	content: "\e008";
+}
+.icon-download:before {
+	content: "\e00c";
+}
